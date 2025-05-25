@@ -1,13 +1,20 @@
 import styled from 'styled-components';
-import { Btnsave, Footer, InputText2, Linea, Title } from '../../index';
+import { Btnsave, Footer, InputText2, Linea, Title, useAuthStore } from '../../index';
 import { v } from '../../styles/variables'
 import { Device } from '../../styles/breakpoints'
 
 const LoginTemplate = () => {
+    const { loginGoogle } = useAuthStore()
     return (
         <Container>
             <div className='card'>
-                <Title $paddingbotton='20px'>INGRESAR</Title>
+
+                <ContentLogo>
+                    <img src={v.logo} />
+                    <span>POS - Ventas</span>
+                </ContentLogo>
+
+                <Title $paddingbotton='20px'>Ingresar</Title>
                 <form >
                     <InputText2>
                         <input className='form__field' placeholder='Mail' type='text' />
@@ -24,7 +31,7 @@ const LoginTemplate = () => {
                     <span>0</span>
                 </Linea>
 
-                <Btnsave titulo='Google' bgcolor='#fff' icono={<v.iconogoogle />} width='100%' />
+                <Btnsave funcion={loginGoogle} titulo='Google' bgcolor='#fff' icono={<v.iconogoogle />} width='100%' />
             </div>
             <Footer />
         </Container>
@@ -33,11 +40,13 @@ const LoginTemplate = () => {
 const Container = styled.div`
     height:100vh;
     display: flex;
+    color:${({ theme }) => theme.text};
     justify-content: center;
     align-items: center;
     text-align: center;
     flex-direction: column;
     margin: 20px;
+    padding:0 10px ;
     .card{
         display: flex;
         flex-direction: column;
@@ -51,4 +60,19 @@ const Container = styled.div`
     }
 
 `;
+
+const ContentLogo = styled.section`
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 1rem;
+    span{
+        font-weight: 700;
+    }
+    img{
+        width: 10%;
+    }
+`;
+
 export default LoginTemplate
