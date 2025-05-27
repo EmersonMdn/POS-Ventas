@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { Device } from './styles/breakpoints'
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -24,7 +25,7 @@ function App() {
           </Container>
         ) : (<Login />)}
 
-
+        <ReactQueryDevtools initialIsOpen={true} />
 
       </AuthContextProvider>
 

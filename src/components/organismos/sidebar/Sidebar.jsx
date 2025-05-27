@@ -10,7 +10,7 @@ import { Icon } from "@iconify/react";
 
 
 export function Sidebar({ state, setState }) {
- 
+
   return (
     <Main $isopen={state.toString()}>
       <span className="Sidebarbutton" onClick={() => setState(!state)}>
@@ -21,7 +21,7 @@ export function Sidebar({ state, setState }) {
           <div className="imgcontent">
             <img src={v.logo} />
           </div>
-          <h2>Ada369 3.0</h2>
+          <h2>ZendaPOS</h2>
         </div>
         {LinksArray.map(({ icon, label, to }) => (
           <div
@@ -64,15 +64,14 @@ export function Sidebar({ state, setState }) {
           <div className="Links">
             <section className={state ? "content open" : "content"}>
               <Icon
-                color="#CE82FF"
                 className="Linkicon"
                 icon="heroicons:ellipsis-horizontal-circle-solid"
               />
               <span className={state ? "label_ver" : "label_oculto"}>MÁS</span>
             </section>
           </div>
-         
-         
+
+
         </div>
 
         <ToggleTema />
@@ -118,7 +117,7 @@ const Container = styled.div`
       cursor: pointer;
       transition: 0.3s ease;
       transform: ${({ $isopen }) =>
-          $isopen === "true" ? `scale(0.7)` : `scale(1.5)`}
+    $isopen === "true" ? `scale(0.7)` : `scale(1.5)`}
         rotate(${({ theme }) => theme.logorotate});
       img {
         width: 100%;
@@ -126,7 +125,7 @@ const Container = styled.div`
       }
     }
     h2 {
-      color: #f88533;
+      color: #1778f2;
       display: ${({ $isopen }) => ($isopen === "true" ? `block` : `none`)};
     }
   }
@@ -187,7 +186,7 @@ const Container = styled.div`
     &.active {
       background: ${(props) => props.theme.bg6};
       border: 2px solid ${(props) => props.theme.bg5};
-      color: ${(props) => props.theme.color1};
+      color: ${(props) => props.theme.bg5};
       font-weight: 600;
     }
   }
@@ -210,7 +209,7 @@ const Main = styled.div`
     transition: all 0.2s;
     z-index: 3;
     transform: ${({ $isopen }) =>
-      $isopen === "true" ? `translateX(173px) rotate(3.142rad)` : `initial`};
+    $isopen === "true" ? `translateX(173px) rotate(3.142rad)` : `initial`};
     color: ${(props) => props.theme.text};
   }
 `;

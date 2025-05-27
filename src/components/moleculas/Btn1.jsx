@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Icono } from "../../index";
-export function Btnsave({
+export function Btn1({
     funcion,
-    titulo,
+    title,
     bgcolor,
     icono,
     url,
@@ -19,10 +19,10 @@ export function Btnsave({
         >
             <section className="content">
                 <Icono $color={color}>{icono}</Icono>
-                {titulo && (
+                {title && (
                     <span className="btn">
                         <a href={url} target="_blank">
-                            {titulo}
+                            {title}
                         </a>
                     </span>
                 )}
@@ -43,7 +43,7 @@ const Container = styled.button`
   cursor: pointer;
   transition: 0.2s;
   transition-timing-function: linear;
-  color: rgb(${(props) => props.$color});
+  color: ${({ theme }) => theme.color2};
   align-items: center;
   justify-content: center;
  width:${(props) => props.$width};
@@ -53,7 +53,7 @@ const Container = styled.button`
   }
   &:active {
     transform: translate(0, 0);
-    border-bottom: 2px solid rgba(50, 50, 50, 0.5);
+    border-bottom: 2px solid rgba(50, 50, 50, 0.2);
   }
   &[disabled] {
     background-color: #646464;

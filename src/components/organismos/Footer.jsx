@@ -1,25 +1,25 @@
 import styled from "styled-components";
 import { GiPadlock } from "react-icons/gi";
 export function Footer() {
-    return (
-        <Container>
-            <section className="lock">
-                <GiPadlock />
-                <span>
-                    Esta es una página segura de codigo369. Si tienes dudas sobre la
-                    autenticidad de la web, comunícate con
-                    <br /> nosotros al 311-9898 o a través de nuestros medios digitales.
-                </span>
-            </section>
-            <section className="derechos">
-                <span>Emerson S.A - RUC: 20100047218</span>
-                <div className="separador"></div>
-                <span>Todos los derechos reservados</span>
-                <div className="separador"></div>
-                <span>© 2023 Emerson.com</span>
-            </section>
-        </Container>
-    );
+  return (
+    <Container>
+      <section className="lock">
+
+        <span><GiPadlock />
+          Esta es una página segura de Emerson. Si tienes dudas sobre la
+          autenticidad de la web, comunícate con
+          <br /> nosotros al 311-9898 o a través de nuestros medios digitales.
+        </span>
+      </section>
+      <section className="derechos">
+        <span>Emerson S.A - RUC: 20100047218</span>
+        <div className="separador"></div>
+        <span>Todos los derechos reservados</span>
+        <div className="separador"></div>
+        <span>© 2023 Emerson.com</span>
+      </section>
+    </Container>
+  );
 }
 const Container = styled.div`
   display: flex;
