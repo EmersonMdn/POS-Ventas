@@ -3,7 +3,7 @@ import { supabase } from '../index'
 const table = 'categories'
 
 export async function InsertCategories(params, file) {
-    const { error, data } = await supabase.rpc("InsertCategories", params)
+    const { error, data } = await supabase.rpc("insertarcategorias", params)
 
     if (error) {
         Swal.fire({
@@ -70,8 +70,72 @@ async function EditIconCategories(p) {
     }
 }
 
-
 export async function ShowCategories(p) {
     const { data } = await supabase.from(table).select().eq('id_company', p.id_company).order('id', { ascending: false })
     return data;
+}
+
+export async function SearchCategories(p) {
+    const { data } = supabase.from(table).select().eq('id_company', p.id_company).ilike('name', '%' + p.description + "%");
+    return data;
+}
+
+export async function DeleteCategorie(p) {
+    const { error } = await supabase.from(table).delete().eq("id", p.id);
+
+    if (error) {
+        Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "Oops",
+            text: error.message,
+            showConfirmButton: false,
+            timer: 1500
+        });
+        return;
+    }
+
+    if (p.icon != "-") {
+        const route = "categories/" + p.id
+        await supabase.storage.from("images").remove([route])
+    }
+}
+
+
+export async function EditCategorie(p, fileold, filenew) {
+    const { error } = await supabase.rpc("updatecategorie", p)
+
+    if (error) {
+        Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "Oops",
+            text: error.message,
+            showConfirmButton: false,
+            timer: 1500
+        });
+        return;
+    }
+
+    if (filenew != '-' && filenew.size != undefined) {
+        if (fileold != '-') {
+            await EditIconStorage(p._id, filenew)
+        }
+        else {
+            const dataImage = await uploadImage(p._id, filenew);
+            const pIconEdit = {
+                icon: dataImage.publicUrl,
+                id: p._id
+            }
+            await EditIconCategories(pIconEdit);
+        }
+    }
+}
+
+export async function EditIconStorage(id, file) {
+    const route = "categories/" + id;
+    await supabase.storage.from('images').update(route, file, {
+        cacheControl: "0",
+        upsert: true
+    })
 }

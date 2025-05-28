@@ -24,14 +24,14 @@ const LoginTemplate = () => {
                         <input className='form__field' placeholder='Contraseña' type='password' />
                     </InputText2>
 
-                    <Btn1 titulo='INGRESAR' bgcolor='#1778f2' color='255, 255, 255' width='100%' />
+                    <Btn1 title='INGRESAR' bgcolor='#1778f2' color='255, 255, 255' width='100%' />
                 </form>
 
                 <Linea >
                     <span>0</span>
                 </Linea>
 
-                <Btn1 funcion={loginGoogle} titulo='Google' bgcolor='#fff' icono={<v.iconogoogle />} width='100%' />
+                <Btn1 funcion={loginGoogle} title='Google' bgcolor='#fff' icono={<v.iconogoogle />} width='100%' />
             </div>
             <Footer />
         </Container>

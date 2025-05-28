@@ -159,7 +159,6 @@ const Container = styled.div`
   h4,
   span {
     color: ${({ theme }) => theme.colorsubtitlecard};
-    font-family: "Rubik", sans-serif;
     font-weight: 600;
     margin: 0px;
   }

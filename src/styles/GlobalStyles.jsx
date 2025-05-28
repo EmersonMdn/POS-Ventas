@@ -5,7 +5,7 @@ export const GlobalStyles = createGlobalStyle`
         padding: 0;
         margin: 0;
         box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Montserrat', sans-serif;
         background-color: ${({ theme }) => theme.bgtotal};
         color: aliceblue;
     }

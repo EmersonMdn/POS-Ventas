@@ -1,5 +1,5 @@
 import { supabase } from "../index"
-const table = 'idType';
+const table = 'id_type';
 
 export const ShowIdType = async (p) => {
     const { data, error } = await supabase

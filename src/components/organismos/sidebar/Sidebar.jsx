@@ -85,12 +85,13 @@ const Container = styled.div`
   position: fixed;
   padding-top: 20px;
   z-index: 2;
-  height: 100%;
+  height: 100vh;
   width: 88px;
   transition: 0.1s ease-in-out;
   overflow-y: auto;
   overflow-x: hidden;
   border-right: 2px solid ${({ theme }) => theme.color2};
+
   
   &::-webkit-scrollbar {
     width: 6px;
