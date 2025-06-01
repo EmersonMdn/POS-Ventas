@@ -6,7 +6,6 @@ import { MdOutlinePointOfSale } from "react-icons/md";
 
 const HomeTemplate = () => {
     const { signOut } = useAuthStore();
-    const { user } = UserAuth();
 
     // Datos de ejemplo para las tarjetas
     const metrics = [
@@ -31,7 +30,7 @@ const HomeTemplate = () => {
         <Container>
             <Header>
                 <WelcomeSection>
-                    <h1>Bienvenido, {user?.user_metadata?.name || "Usuario"}</h1>
+                    <h1>Bienvenido, Usuario</h1>
                     <p>Resumen de actividades y métricas clave</p>
                 </WelcomeSection>
                 <UserSection>

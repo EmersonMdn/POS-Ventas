@@ -16,3 +16,12 @@ export async function InsertCompany(p) {
     }
     return data;
 }
+
+export const ShowCompanyByUser = async (p) => {
+    const { data, error } = await supabase.rpc("show_company_by_user", p).maybeSingle();
+
+    if (error) {
+        console.log("🚀 ~ ShowCompanyByUser ~ error:", error)
+    }
+    return data;
+}

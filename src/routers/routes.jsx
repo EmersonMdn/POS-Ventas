@@ -1,9 +1,29 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
-import { Categories, LoginTemplate, ProtectedRoute, Settings, UserAuth } from "../index";
+import { Categories, LoginTemplate, ProtectedRoute, Settings, Spinner1, useCompanyStore, UserAuth, useUsersStore } from "../index";
+import { useQuery } from "@tanstack/react-query";
 
 export function MyRoutes() {
-    const { user } = UserAuth()
+    const { user } = UserAuth();
+    const { dataUsers, showUsers } = useUsersStore();
+    const { showCompany, dataCompany } = useCompanyStore();
+    const { isLoading, error } = useQuery({
+        queryKey: 'Show users',
+        queryFn: showUsers
+    });
+    const { data: responseCompany } = useQuery({
+        queryKey: ['Show company', dataUsers?.id],
+        queryFn: () => showCompany({ _id_user: dataUsers?.id }),
+        enabled: !!dataUsers
+    })
+
+    if (isLoading) {
+        return (<Spinner1 />)
+    }
+    if (error) {
+        return (<span>Error...</span>)
+    }
+
     return (
         <Routes>
             <Route element={<ProtectedRoute user={user} redirectTo='/login' />} >

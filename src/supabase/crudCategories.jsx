@@ -5,17 +5,6 @@ const table = 'categories'
 export async function InsertCategories(params, file) {
     const { error, data } = await supabase.rpc("insertarcategorias", params)
 
-    if (error) {
-        Swal.fire({
-            position: "top-end",
-            icon: "error",
-            title: "Oops",
-            text: error.message,
-            showConfirmButton: false,
-            timer: 1500
-        });
-        return;
-    }
     const img = file.size;
     if (img != undefined) {
         const new_id = data;

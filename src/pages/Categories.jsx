@@ -5,8 +5,8 @@ import { useCategoriesStore } from '../store/CategoriesStore';
 
 const Categories = () => {
     const { showCategories } = useCategoriesStore();
-    const {} = useCompanyStore();
-    const {} = useQuery({queryKey:["show categories",]});
+    const { dataCompany } = useCompanyStore();
+    const { data } = useQuery({ queryKey: ["show categories", dataCompany?.id], queryFn: () => showCategories({ id_company: dataCompany?.id }) });
     return (<CategoriesTemplate />)
 }
 

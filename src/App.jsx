@@ -12,23 +12,25 @@ function App() {
 
   return (
     <ThemeProvider theme={themeStyle}>
-      <GlobalStyles />
-
       <AuthContextProvider>
+
+        <GlobalStyles />
         {pathname != '/login' ? (
           <Container className={sidebarOpen ? 'active' : ''}>
             <section className='contentSidebar'>
-              <Sidebar state={sidebarOpen} setState={() => setSidebarOpen(!sidebarOpen)} />
+              <Sidebar
+                state={sidebarOpen}
+                setState={() => setSidebarOpen(!sidebarOpen)} />
             </section>
             <section className='contentMenu'>Menu</section>
-            <section className='contentRouters'><MyRoutes /></section>
+            <section className='contentRouters'>
+              <MyRoutes />
+            </section>
           </Container>
         ) : (<Login />)}
 
         <ReactQueryDevtools initialIsOpen={true} />
-
       </AuthContextProvider>
-
     </ThemeProvider>
   )
 }

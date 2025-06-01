@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Btn1, Searcher, Title } from '../../index';
+import { Btn1, Searcher, TablaCategorias, Title, useCategoriesStore } from '../../index';
 import { v } from '../../styles/variables'
 
 const CategoriesTemplate = () => {
+  const { datacategories } = useCategoriesStore();
   return (
     <Container>
       <section className='area1'>
@@ -19,6 +20,7 @@ const CategoriesTemplate = () => {
       </section>
 
       <section className='main'>
+        <TablaCategorias data={datacategories} />
         Main
       </section>
 
@@ -50,7 +52,6 @@ const Container = styled.div`
   }
   .main{ 
     grid-template:main;
-    background-color: #554c553a;
   }
 
 `;

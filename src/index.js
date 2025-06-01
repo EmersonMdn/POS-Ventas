@@ -31,6 +31,7 @@ export * from './store/CategoriesStore';
 export * from './store/CompanyStore';
 export * from './store/ModulesStore';
 export * from './store/ThemeStore';
+export * from './store/UsersStore';
 export * from './styles/GlobalStyles';
 export * from './styles/breakpoints';
 export * from './styles/themes';
