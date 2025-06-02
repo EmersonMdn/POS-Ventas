@@ -9,9 +9,9 @@ import { useState } from "react"
 
 export function TablaCategorias({
   data,
-  SetopenRegistro,
-  setdataSelect,
-  setAccion,
+  setOpenRegistration,
+  setDataSelect,
+  setAction,
 }) {
   if (data == null) return;
 
@@ -19,14 +19,14 @@ export function TablaCategorias({
   const [datas, setData] = useState(data);
   const [columnFilters, setColumnFilters] = useState([]);
 
-  const { eliminarCategoria } = useCategoriesStore();
+  const { deleteCategorie } = useCategoriesStore();
+
   function eliminar(p) {
-    if (p.nombre === "General") {
+    if (p.name === "General") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Este registro no se permite modificar ya que es valor por defecto.",
-        footer: '<a href="">...</a>',
       });
       return;
     }
@@ -40,33 +40,36 @@ export function TablaCategorias({
       confirmButtonText: "Si, eliminar",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await eliminarCategoria({ id: p.id });
+        await deleteCategorie({ id: p.id });
       }
     });
   }
+
   function editar(data) {
-    if (data.nombre === "General") {
+    console.log("🚀 ~ editar ~ data:", data)
+    if (data.name === "General") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Este registro no se permite modificar ya que es valor por defecto.",
-        footer: '<a href="">...</a>',
       });
       return;
     }
-    SetopenRegistro(true);
-    setdataSelect(data);
-    setAccion("Editar");
+
+    setOpenRegistration(true);
+    setDataSelect(data);
+    setAction("Edit");
   }
+
   const columns = [
     {
-      accessorKey: "icono",
+      accessorKey: "icon",
       header: "Icono",
       enableSorting: false,
       cell: (info) => (
         <td data-title="Color" className="ContentCell">
           {
-            info.getValue() != "-" ? (<ImageContent imagen={info.getValue()} />) : (<Icono>
+            info.getValue() != "-" ? (<ImageContent img={info.getValue()} />) : (<Icono>
               {<v.iconoimagenvacia />}
             </Icono>)
           }
@@ -82,18 +85,7 @@ export function TablaCategorias({
       },
     },
     {
-      accessorKey: "id",
-      header: "Id",
-      cell: (info) => <span>{info.getValue()}</span>,
-      enableColumnFilter: true,
-      filterFn: (row, columnId, filterStatuses) => {
-        if (filterStatuses.length === 0) return true;
-        const status = row.getValue(columnId);
-        return filterStatuses.includes(status?.id);
-      },
-    },
-    {
-      accessorKey: "nombre",
+      accessorKey: "name",
       header: "Descripcion",
       cell: (info) => <span>{info.getValue()}</span>,
       enableColumnFilter: true,

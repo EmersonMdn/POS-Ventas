@@ -1,27 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Btn1, Searcher, TablaCategorias, Title, useCategoriesStore } from '../../index';
+import { Btn1, RegisterCategories, Searcher, TablaCategorias, Title, useCategoriesStore } from '../../index';
 import { v } from '../../styles/variables'
+import { ConfettiExplosion } from 'react-confetti-explosion';
 
 const CategoriesTemplate = () => {
-  const { datacategories } = useCategoriesStore();
+  const [openRegistration, setOpenRegistration] = useState(false);
+  const [action, setAction] = useState('');
+  const [dataSelect, setDataSelect] = useState([]);
+  const { datacategories, setSearcher } = useCategoriesStore();
+  const [isExploding, setIsExploding] = React.useState(false);
+
+  const newRegistration = () => {
+    setOpenRegistration(!openRegistration)
+    setAction("New")
+    setDataSelect([])
+    setIsExploding(false)
+  }
+
   return (
     <Container>
+      {
+        openRegistration && (
+          <RegisterCategories
+            onClose={() => setOpenRegistration(!openRegistration)}
+            dataSelect={dataSelect}
+            accion={action}
+            setIsExploding={setIsExploding}
+          />
+        )
+      }
+
       <section className='area1'>
         <Title>Categorias</Title>
         <Btn1
           title={'nuevo'}
+          funcion={newRegistration}
           bgcolor={v?.colorPrincipal}
           icono={<v.iconoagregar />} />
       </section>
 
       <section className='area2'>
-        <Searcher placeholder='Buscar categoria' />
+        <Searcher setInput={setSearcher} placeholder='Buscar categoria' />
       </section>
 
       <section className='main'>
-        <TablaCategorias data={datacategories} />
-        Main
+        {
+          isExploding && <ConfettiExplosion />
+        }
+        <TablaCategorias
+          data={datacategories}
+          setAction={setAction}
+          setOpenRegistration={setOpenRegistration}
+          setDataSelect={setDataSelect} />
       </section>
 
     </Container>
@@ -30,6 +61,7 @@ const CategoriesTemplate = () => {
 const Container = styled.div`
   height: calc(100vh - 30px);
   padding: 15px;
+  margin: 5%;
   display: grid;
   grid-template:
   "area1" 60px

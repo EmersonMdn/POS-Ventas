@@ -9,12 +9,12 @@ export function MyRoutes() {
     const { showCompany, dataCompany } = useCompanyStore();
     const { isLoading, error } = useQuery({
         queryKey: 'Show users',
-        queryFn: showUsers
+        queryFn: showUsers, refetchOnWindowFocus: false
     });
     const { data: responseCompany } = useQuery({
         queryKey: ['Show company', dataUsers?.id],
         queryFn: () => showCompany({ _id_user: dataUsers?.id }),
-        enabled: !!dataUsers
+        enabled: !!dataUsers, refetchOnWindowFocus: false
     })
 
     if (isLoading) {

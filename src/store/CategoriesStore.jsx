@@ -7,12 +7,12 @@ export const useCategoriesStore = create((set, get) => ({
         set({ searcher: p })
     },
     datacategories: [],
-    categoriesItemSelec: [],
+    categoriesItemSelect: [],
     params: {},
     showCategories: async (p) => {
         const response = await ShowCategories(p)
         set({ params: p })
-        set({ categoriesItemSelect: response })
+        set({ datacategories: response })
         set({ categoriesItemSelect: response[0] })
         return response;
     },
