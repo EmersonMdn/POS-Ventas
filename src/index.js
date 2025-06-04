@@ -38,6 +38,7 @@ export * from './styles/GlobalStyles';
 export * from './styles/breakpoints';
 export * from './styles/themes';
 export * from './styles/variables';
+export * from './supabase/crudBrand';
 export * from './supabase/crudCategories';
 export * from './supabase/crudCompany';
 export * from './supabase/crudIdType';
