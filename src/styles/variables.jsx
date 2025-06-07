@@ -44,11 +44,12 @@ import { BsEmojiDizzy } from "react-icons/bs";
 import { FcImageFile } from "react-icons/fc";
 import { IoIosArrowBack } from "react-icons/io";
 import { GrAdd } from "react-icons/gr";
-import { IoSearchOutline } from "react-icons/io5";
+import { FiSearch, FiX } from 'react-icons/fi';
 
 
 export const v = {
-    iconSearch: IoSearchOutline,
+    iconSearch: FiSearch,
+    iconClose: FiX,
     colorPrincipal: `#1778f2`,
     colorSecundario: `#DAC1FF`,
     iconoagregar: GrAdd,

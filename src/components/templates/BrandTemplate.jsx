@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Btn1, RegisterCategories, Searcher, TablaCategorias, Title, useCategoriesStore } from '../../index';
+import { Btn1, RegisterBrand, Searcher, TablaMarcas, Title, useBrandsStore } from '../../index';
 import { v } from '../../styles/variables';
 import { ConfettiExplosion } from 'react-confetti-explosion';
 
-const CategoriesTemplate = () => {
+const BrandTemplate = () => {
   const [openRegistration, setOpenRegistration] = useState(false);
   const [action, setAction] = useState('');
   const [dataSelect, setDataSelect] = useState([]);
-  const { datacategories, setSearcher } = useCategoriesStore();
+  const { databrand, setSearcher } = useBrandsStore();
   const [isExploding, setIsExploding] = React.useState(false);
 
   const newRegistration = () => {
@@ -21,7 +21,7 @@ const CategoriesTemplate = () => {
   return (
     <Container>
       {openRegistration && (
-        <RegisterCategories
+        <RegisterBrand
           onClose={() => setOpenRegistration(!openRegistration)}
           dataSelect={dataSelect}
           accion={action}
@@ -33,7 +33,7 @@ const CategoriesTemplate = () => {
 
       <Header>
         <PageTitle>
-          <Title>Categorías</Title>
+          <Title>Marcas</Title>
           <Actions>
             <Searcher
               setInput={setSearcher}
@@ -50,8 +50,8 @@ const CategoriesTemplate = () => {
       </Header>
 
       <MainContent>
-        <TablaCategorias
-          data={datacategories}
+        <TablaMarcas
+          data={databrand}
           setAction={setAction}
           setOpenRegistration={setOpenRegistration}
           setDataSelect={setDataSelect}
@@ -137,4 +137,4 @@ const AddButton = styled(Btn1)`
   }
 `;
 
-export default CategoriesTemplate;
+export default BrandTemplate;

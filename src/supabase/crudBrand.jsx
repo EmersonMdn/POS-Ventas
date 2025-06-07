@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 import { supabase } from '../index'
-const table = 'brand'
+const table = 'brands'
 
 export async function InsertBrands(params) {
     const { error } = await supabase.rpc("insertarmarcas", params)
@@ -29,7 +29,7 @@ export async function SearchBrands(p) {
         .from(table)
         .select()
         .eq('id_company', p.id_company)
-        .ilike('name', '%' + p.description + "%");
+        .ilike('name', '%' + p.name + "%");
     return data;
 }
 

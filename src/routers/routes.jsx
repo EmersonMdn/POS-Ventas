@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
-import { Categories, LoginTemplate, ProtectedRoute, Settings, Spinner1, useCompanyStore, UserAuth, useUsersStore } from "../index";
+import { Brand, Categories, LoginTemplate, ProtectedRoute, Settings, Spinner1, useCompanyStore, UserAuth, useUsersStore } from "../index";
 import { useQuery } from "@tanstack/react-query";
 
 export function MyRoutes() {
@@ -30,6 +30,7 @@ export function MyRoutes() {
                 <Route path="/" element={<Home />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/settings/categories" element={<Categories />} />
+                <Route path="/settings/brand" element={<Brand />} />
 
             </Route>
             <Route path="/login" element={<LoginTemplate />} />

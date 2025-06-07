@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import styled from "styled-components";
-import { ContentAccionesTabla, Paginacion, ImageContent, Icono, useCategoriesStore } from "../../../index";
+import { ContentAccionesTabla, Paginacion, ImageContent, Icono, useBrandsStore } from "../../../index";
 import Swal from "sweetalert2";
 import { v } from "../../../styles/variables";
 import { flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable, } from "@tanstack/react-table";
 import { FaArrowsAltV, FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
 import { useState } from "react"
 
-export function TablaCategorias({
+export function TablaMarcas({
   data,
   setOpenRegistration,
   setDataSelect,
@@ -19,7 +19,7 @@ export function TablaCategorias({
   const [datas, setData] = useState(data);
   const [columnFilters, setColumnFilters] = useState([]);
 
-  const { deleteCategorie } = useCategoriesStore();
+  const { deleteBrand } = useBrandsStore();
 
   function eliminar(p) {
     if (p.name === "General") {
@@ -40,7 +40,7 @@ export function TablaCategorias({
       confirmButtonText: "Si, eliminar",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await deleteCategorie({ id: p.id });
+        await deleteBrand({ id: p.id });
       }
     });
   }
@@ -63,28 +63,6 @@ export function TablaCategorias({
 
   const columns = [
     {
-      accessorKey: "icon",
-      header: "Icono",
-      enableSorting: false,
-      cell: (info) => (
-        <td data-title="Color" className="ContentCell">
-          {
-            info.getValue() != "-" ? (<ImageContent img={info.getValue()} />) : (<Icono>
-              {<v.iconoimagenvacia />}
-            </Icono>)
-          }
-
-        </td>
-      ),
-
-      enableColumnFilter: true,
-      filterFn: (row, columnId, filterStatuses) => {
-        if (filterStatuses.length === 0) return true;
-        const status = row.getValue(columnId);
-        return filterStatuses.includes(status?.id);
-      },
-    },
-    {
       accessorKey: "name",
       header: "Descripcion",
       cell: (info) => <span>{info.getValue()}</span>,
@@ -96,23 +74,6 @@ export function TablaCategorias({
       },
     },
 
-    {
-      accessorKey: "color",
-      header: "Color",
-      enableSorting: false,
-      cell: (info) => (
-        <td data-title="Color" className="ContentCell">
-          <Colorcontent color={info.getValue()} $alto="25px" $ancho="25px" />
-        </td>
-      ),
-
-      enableColumnFilter: true,
-      filterFn: (row, columnId, filterStatuses) => {
-        if (filterStatuses.length === 0) return true;
-        const status = row.getValue(columnId);
-        return filterStatuses.includes(status?.id);
-      },
-    },
     {
       accessorKey: "acciones",
       header: "",
